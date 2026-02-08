@@ -1,0 +1,24 @@
+import requests
+import os
+import json
+def create_embeddings(text):
+    r=requests.post("http://localhost:11434/api/embeddings", json={
+        "model": "bge-m3",
+        "prompt": text
+    })
+    embedding=r.json()['embedding']
+    return embedding
+
+my_dict=[]
+chunk_id=0
+jsons=os.listdir('jsons')
+for json_file in jsons:
+    with open(f"jsons/{json_file}") as f:
+        content=json.load(f)
+    for chunk in content['chunks']:
+        chunk['chunk_id']=chunk_id
+        chunk_id+=1
+        chunk['embeddings']=create_embeddings(chunk['text'])
+        my_dict.append(chunk)
+        print(chunk)
+    break

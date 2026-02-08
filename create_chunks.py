@@ -14,8 +14,8 @@ for audio in audios:
     title=audio.split("_")[1][:-4]
     print(number,title)
     
-    # result=model.transcribe(audio=f"audios/{audios}.mp3", language="hi", task="translate", word_timestamps=False)
-    result=model.transcribe(audio=f"audios/sample.mp3", language="hi", task="translate", word_timestamps=False)
+    result=model.transcribe(audio=f"audios/{audio}", language="hi", task="translate", word_timestamps=False)
+    # result=model.transcribe(audio=f"audios/sample.mp3", language="hi", task="translate", word_timestamps=False)
 
     chunks=[]
 
@@ -24,5 +24,5 @@ for audio in audios:
 
     chunks_with_meta={"chunks":chunks, "text": result["text"]}
 
-    with open("output.json", "w") as f:
+    with open(f"jsons/{audio}.json", "w") as f:
         json.dump(chunks_with_meta,f)
