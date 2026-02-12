@@ -1,6 +1,7 @@
 audios/
 videos/
 *.json
+*.joblib
 tempCodeRunnerFile.python
 prompt.txt
-*.joblib
+response.txt

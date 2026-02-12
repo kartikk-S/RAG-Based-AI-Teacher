@@ -28,6 +28,14 @@ def create_embedding(text_list, batch_size):
 
     return all_embeddings
 
+def inference(prompt):
+    r=requests.post("http://localhost:11434/api/generate", json={
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    })
+    response=r.json()
+    return response
 
 df=joblib.load('embeddings.joblib')
 
@@ -51,7 +59,14 @@ User asked this question related to the video chunks, you have to answer in a hu
 with open("prompt.txt", "w") as f:
     f.write(prompt)
 
+response=inference(prompt)["response"]
+print(response)
 
+with open("response.txt", "w") as f:
+    f.write(response)
+
+
+ 
 for index,item in new_df.iterrows():
     print(index, item['title'], item['number'], item['text'], item['start'], item['end'])
 
