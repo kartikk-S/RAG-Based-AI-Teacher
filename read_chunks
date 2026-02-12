@@ -2,6 +2,9 @@ import requests
 import os
 import json
 import pandas as pd
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
+import joblib
 
 def create_embedding(text_list, batch_size):
     all_embeddings=[]
@@ -50,3 +53,4 @@ print(df)
 # a = create_embedding(["Cat sat on the mat", "Harry dances on a mat"])
 # print(a)
 
+joblib.dump(df, 'embeddings.joblib')

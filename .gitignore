@@ -1,3 +1,6 @@
 audios/
 videos/
 *.json
+tempCodeRunnerFile.python
+prompt.txt
+*.joblib

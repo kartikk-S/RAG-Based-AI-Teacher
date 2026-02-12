@@ -1,2 +1,0 @@
- # embeddings = create_embedding([c["text"] for c in content["chunks"]],10)
-    # print(len(embeddings))
