@@ -3,10 +3,6 @@ import numpy as np
 import pandas as pd
 import joblib
 import requests
-from openai import OpenAI
-from config import api_key
-
-client=OpenAI(api_key=api_key)
 
 def create_embedding(text_list, batch_size):
     all_embeddings=[]
@@ -41,12 +37,6 @@ def inference(prompt):
     response=r.json()
     return response
 
-def inference_openai(prompt):
-    response=client.responses.create(
-        model="gpt-5",
-        input=prompt
-    )
-    return response.output_text
 
 df=joblib.load('embeddings.joblib')
 
